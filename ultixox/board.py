@@ -22,3 +22,14 @@ class Board:
         self.value = check_board(self.fields)
 
         return self.value
+
+    def state(self, current=None, move=()):
+        if not current:
+            current = self.fields
+
+        state = [[f for f in field] for field in current]
+
+        if move:
+            state[move[1]][move[2]] = move[0]
+
+        return state
