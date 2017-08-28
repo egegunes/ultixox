@@ -5,7 +5,7 @@ from helpers import check_board
 
 class Game:
     def __init__(self):
-        self.boards = {row: [Board(row, column) for column in range(3)] for row in range(3)}
+        self.boards = [[Board(row, column) for column in range(3)] for row in range(3)]
         self.status = None
 
     def move(self, value, board_row, board_column, field_row, field_column):
@@ -15,4 +15,3 @@ class Game:
 
     def check(self):
         self.status = check_board(self.boards)
-
