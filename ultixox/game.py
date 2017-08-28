@@ -8,10 +8,8 @@ class Game:
         self.boards = [[Board(row, column) for column in range(3)] for row in range(3)]
         self.status = None
 
-    def move(self, value, board_row, board_column, field_row, field_column):
-        self.boards[board_row][board_column].move(value, field_row, field_column)
-        if self.boards[board_row][board_column].value is not None:
-            self.check()
+    def move(self, player, move):
+        self.boards[move[0]][move[1]].move(player, move[2], move[3])
 
     def check(self):
         self.status = check_board(self.boards)
