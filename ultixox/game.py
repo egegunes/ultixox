@@ -1,3 +1,5 @@
+from ast import literal_eval
+
 from player import Player
 from board import Board
 from helpers import check_board
@@ -15,3 +17,11 @@ class Game:
 
     def check(self):
         self.status = check_board(self.boards)
+
+
+if __name__ == '__main__':
+    game = Game()
+    while game.status is None:
+        move = literal_eval(input(f'{game.turn} Move: '))
+        game.move(game.turn.indicator, move)
+        game.turn = game.players[int(not game.players.index(game.turn))]
