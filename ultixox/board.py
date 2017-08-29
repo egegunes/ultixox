@@ -1,6 +1,10 @@
 from helpers import check_board
 
 
+class FieldOccupied(ValueError):
+    pass
+
+
 class Board:
     def __init__(self, row, column):
         self.row = row
@@ -12,6 +16,9 @@ class Board:
         return f'Board({self.row}, {self.column})'
 
     def move(self, value, row, column):
+        if self.fields[row][column] is not None:
+            raise FieldOccupied(f'{row},{column} is occupied by {self.fields[row][column]}')
+
         self.fields[row][column] = value
 
     def check(self):

@@ -1,7 +1,7 @@
 from ast import literal_eval
 
 from player import Player
-from board import Board
+from board import Board, FieldOccupied
 from helpers import check_board
 
 
@@ -22,6 +22,14 @@ class Game:
 if __name__ == '__main__':
     game = Game()
     while game.status is None:
-        move = literal_eval(input(f'{game.turn} Move: '))
-        game.move(game.turn.indicator, move)
+        move = None
+        while move is None:
+            move = literal_eval(input(f'{game.turn} Move: '))
+
+            try:
+                game.move(game.turn.indicator, move)
+            except FieldOccupied:
+                print("Invalid move. Try again.")
+                move = None
+
         game.turn = game.players[int(not game.players.index(game.turn))]
