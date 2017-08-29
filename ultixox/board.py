@@ -20,6 +20,7 @@ class Board:
             raise FieldOccupied(f'{row},{column} is occupied by {self.fields[row][column]}')
 
         self.fields[row][column] = value
+        self.check()
 
     def check(self):
         if self.value is not None:

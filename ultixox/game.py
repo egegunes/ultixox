@@ -41,4 +41,5 @@ if __name__ == '__main__':
                 print("Invalid move. Try again.")
                 move = None
 
+        game.check()
         game.turn = game.players[int(not game.players.index(game.turn))]
