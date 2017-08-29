@@ -12,8 +12,7 @@ class Board:
         return f'Board({self.row}, {self.column})'
 
     def move(self, value, row, column):
-        self.fields[row][column].value = value
-        self.check()
+        self.fields[row][column] = value
 
     def check(self):
         if self.value is not None:
