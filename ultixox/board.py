@@ -17,7 +17,7 @@ class Board:
 
     def move(self, value, row, column):
         if self.fields[row][column] is not None:
-            raise FieldOccupied(f'{row},{column} is occupied by {self.fields[row][column]}')
+            raise FieldOccupied(f'{row},{column} on {self} is occupied by {self.fields[row][column]}')
 
         self.fields[row][column] = value
         self.check()
