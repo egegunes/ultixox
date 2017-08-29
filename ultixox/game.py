@@ -40,8 +40,8 @@ if __name__ == '__main__':
 
             try:
                 game.move(game.turn.indicator, move)
-            except (FieldOccupied, InvalidBoard):
-                print("Invalid move. Try again.")
+            except (FieldOccupied, InvalidBoard) as e:
+                print(e)
                 move = None
 
         game.check(game.state())
