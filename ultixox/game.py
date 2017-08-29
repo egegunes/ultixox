@@ -24,8 +24,11 @@ class Game:
         self.boards[move[0]][move[1]].move(player, move[2], move[3])
         self.next_board = self.boards[move[2]][move[3]]
 
-    def check(self):
-        self.status = check_board(self.boards)
+    def check(self, fields):
+        self.status = check_board(fields)
+
+    def state(self):
+        return [[b.value for b in board] for board in self.boards]
 
 
 if __name__ == '__main__':
@@ -41,5 +44,5 @@ if __name__ == '__main__':
                 print("Invalid move. Try again.")
                 move = None
 
-        game.check()
+        game.check(game.state())
         game.turn = game.players[int(not game.players.index(game.turn))]

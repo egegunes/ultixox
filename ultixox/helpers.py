@@ -15,5 +15,5 @@ def check_board(fields):
         field_2 = fields[WINNER[1][0]][WINNER[1][1]]
         field_3 = fields[WINNER[2][0]][WINNER[2][1]]
 
-        if field_1.value == field_2.value == field_3.value:
-            return field_1.value
+        if field_1 == field_2 == field_3:
+            return field_1
