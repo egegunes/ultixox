@@ -1,12 +1,8 @@
 from ast import literal_eval
 
 from player import Player
-from board import Board, FieldOccupied
+from board import Board
 from helpers import check_board
-
-
-class InvalidBoard(ValueError):
-    pass
 
 
 class Game:
@@ -19,7 +15,7 @@ class Game:
 
     def move(self, player, move):
         if self.next_board and (move[0] != self.next_board.row or move[1] != self.next_board.column):
-            raise InvalidBoard(f'{self.next_board} is the only valid board to play.')
+            raise ValueError(f'{self.next_board} is the only valid board to play.')
 
         self.boards[move[0]][move[1]].move(player, move[2], move[3])
         self.next_board = self.boards[move[2]][move[3]]
@@ -40,7 +36,7 @@ if __name__ == '__main__':
 
             try:
                 game.move(game.turn.indicator, move)
-            except (FieldOccupied, InvalidBoard) as e:
+            except ValueError as e:
                 print(e)
                 move = None
 
