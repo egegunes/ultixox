@@ -11,9 +11,7 @@ def check_board(fields):
     )
 
     for WINNER in WINNERS:
-        field_1 = fields[WINNER[0][0]][WINNER[0][1]]
-        field_2 = fields[WINNER[1][0]][WINNER[1][1]]
-        field_3 = fields[WINNER[2][0]][WINNER[2][1]]
-
-        if field_1 == field_2 == field_3:
-            return field_1
+        if (fields[WINNER[0][0]][WINNER[0][1]]
+                == fields[WINNER[1][0]][WINNER[1][1]]
+                == fields[WINNER[2][0]][WINNER[2][1]]):
+            return fields[WINNER[0][0]][WINNER[0][1]]
