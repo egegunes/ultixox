@@ -2,7 +2,7 @@ from ast import literal_eval
 
 from player import Player
 from board import Board
-from helpers import check_board
+from helpers import check
 
 
 class Game:
@@ -17,12 +17,12 @@ class Game:
         if self.next_board and (move[0] != self.next_board.row or move[1] != self.next_board.column):
             raise ValueError(f'{self.next_board} is the only valid board to play.')
 
-        self.boards[move[0]][move[1]].move(player, move[2], move[3])
+        self.boards[move[0]][move[1]].move((move[2], move[3]), player)
         self.next_board = self.boards[move[2]][move[3]]
         print(f'Next board: {self.next_board}')
 
     def check(self, fields):
-        self.status = check_board(fields)
+        self.status = check(fields)
 
     def state(self):
         return [[b.value for b in board] for board in self.boards]

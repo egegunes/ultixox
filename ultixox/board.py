@@ -1,4 +1,7 @@
-from helpers import check_board
+from copy import deepcopy
+from itertools import product
+
+from helpers import check
 
 
 class Board:
@@ -11,28 +14,26 @@ class Board:
     def __repr__(self):
         return f'Board({self.row}, {self.column})'
 
-    def move(self, value, row, column):
-        if self.fields[row][column] is not None:
-            raise ValueError(f'{row},{column} on {self} is occupied by {self.fields[row][column]}')
+    def move(self, move, player):
+        if self.fields[move[0]][move[1]] is not None:
+            raise ValueError(f'{move[0]},{move[1]} on {self} is occupied by {self.fields[move[0]][move[1]]}')
 
-        self.fields[row][column] = value
+        self.fields[move[0]][move[1]] = player
         self.check()
 
     def check(self):
         if self.value is not None:
             return self.value
 
-        self.value = check_board(self.fields)
+        self.value = check(self.fields)
 
         return self.value
 
-    def state(self, current=None, move=()):
-        if not current:
-            current = self.fields
+    def next_state(self, move, player):
+        board = deepcopy(self)
+        board.move(move, player)
+        return board
 
-        state = [[f for f in field] for field in current]
-
-        if move:
-            state[move[1]][move[2]] = move[0]
-
-        return state
+    @property
+    def available_moves(self):
+        return [(row, column) for row, column in product(range(3), range(3)) if self.fields[row][column] is None]
