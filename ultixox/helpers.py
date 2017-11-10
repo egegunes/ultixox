@@ -1,4 +1,4 @@
-def check_board(fields):
+def check(board):
     WINNERS = (
         ((0, 0), (0, 1), (0, 2)),
         ((1, 0), (1, 1), (1, 2)),
@@ -11,7 +11,7 @@ def check_board(fields):
     )
 
     for WINNER in WINNERS:
-        if (fields[WINNER[0][0]][WINNER[0][1]]
-                == fields[WINNER[1][0]][WINNER[1][1]]
-                == fields[WINNER[2][0]][WINNER[2][1]]):
-            return fields[WINNER[0][0]][WINNER[0][1]]
+        if (board[WINNER[0][0]][WINNER[0][1]]
+                == board[WINNER[1][0]][WINNER[1][1]]
+                == board[WINNER[2][0]][WINNER[2][1]]):
+            return board[WINNER[0][0]][WINNER[0][1]]
